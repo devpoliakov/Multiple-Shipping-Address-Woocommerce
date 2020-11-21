@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Multiple Shipping Address Woocommerce
  * Description: This plugin allows create to users multiple address.
- * Version: 1.0
+ * Version: 2.0
  * Author: Ocean Infotech
  * Author URI: https://www.xeeshop.com
  * Copyright: 2019 
