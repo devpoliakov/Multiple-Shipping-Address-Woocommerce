@@ -381,22 +381,7 @@ if (!class_exists('OCWMA_front')) {
           $user_id  = get_current_user_id();
           global $wpdb;
           $tablename=$wpdb->prefix.'ocwma_billingadress';
-          ?>
-        <!--  
-         <select class="ocwma_select">
-          <option>...Choose address...</option>
-          <?php
-             $user = $wpdb->get_results( "SELECT * FROM {$tablename} WHERE type='billing' AND userid=".$user_id);
-                   foreach($user as $row){    
-                    $userdata_bil=$row->userdata;
-                    $user_data = unserialize($userdata_bil);
 
-                    ?> <option value="<?php echo $row->id ?>">  <?php echo $user_data['reference_field'] ?></option><?php }
-                    ?>
-          </select>
-        -->
-
-        <?php
              $user = $wpdb->get_results( "SELECT * FROM {$tablename} WHERE type='billing' AND userid=".$user_id);
                    foreach($user as $row){    
                     $userdata_bil=$row->userdata;
@@ -404,7 +389,15 @@ if (!class_exists('OCWMA_front')) {
 
                     ?>
                     <div class="choose-saved-address" const-val-id="<?php echo $row->id ?>">
-                      <?php echo $user_data['reference_field'] ?>
+                      <?php 
+
+                      unset($user_data['reference_field']);
+
+                        foreach ($user_data as $value) {
+                          echo "<p>$value</p>";
+                        }
+
+                       ?>
                     </div>
 
                      <?php }

@@ -211,7 +211,7 @@ h3.ocwma_border {
     float: left;
 }
 .form_option_billing, .form_option_shipping {
-  display: inline-block;
+  display: block;
   margin: 15px 0;
 }
 .ocwma_inerror {
@@ -224,8 +224,18 @@ h3.ocwma_border {
 
 .choose-saved-address {
   cursor: pointer;
-   border: 1px solid #ccc;
-   border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 32%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.entry-content .choose-saved-address p,
+.choose-saved-address p{
+  font-size: 14px;
+  margin: 5px 5px 5px 5px;
+  line-height: 110%;
 }
 
 @media screen and (max-width: 767px){
