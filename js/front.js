@@ -87,8 +87,10 @@ jQuery(document).ready(function(){
 
 
 jQuery(document).ready(function(){
-	jQuery('.ocwma_select').change(function(){
-        var sid = jQuery(this).val();	 
+	//jQuery('.ocwma_select').change(function(){
+	jQuery('.choose-saved-address').click(function(){
+        //var sid = jQuery(this).val();	 
+        var sid = jQuery(this).attr('const-val-id');	 
 		var current = jQuery(this);	
 			jQuery.ajax({
 			url:ajax_url,

@@ -218,6 +218,16 @@ h3.ocwma_border {
 	border: 3px solid red;
 }
 
+/*
+  Saved shipping addresses
+*/
+
+.choose-saved-address {
+  cursor: pointer;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+
 @media screen and (max-width: 767px){
   .ocwma_modal-content {
       width: 96%;
