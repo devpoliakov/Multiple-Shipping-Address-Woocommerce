@@ -405,7 +405,7 @@ if (!class_exists('OCWMA_front')) {
 
         
 
-          <button class="form_option_billing" data-id="<?php echo $user_id; ?>" style="background-color: <?php echo get_option( 'ocwma_btn_bg_clr', '#000000' ) ?>; color: <?php echo get_option( 'ocwma_font_clr', '#ffffff' ) ?>; padding: <?php echo get_option( 'ocwma_btn_padding', '8px 10px' )?>; font-size: <?php echo get_option( 'ocwma_font_size', '15' )."px" ?>;"><?php echo get_option( 'ocwma_head_title', 'Add Billing Address' );?></button>
+          <button class="form_option_billing" data-id="<?php echo $user_id; ?>" style="background-color: <?php echo get_option( 'ocwma_btn_bg_clr', '#000000' ) ?>; color: <?php echo get_option( 'ocwma_font_clr', '#ffffff' ) ?>; padding: <?php echo get_option( 'ocwma_btn_padding', '8px 10px' )?>; font-size: <?php echo get_option( 'ocwma_font_size', '15' )."px" ?>;"><?php echo get_option( 'ocwma_head_title', 'Add Address' );?></button>
 
           <?php
         }
