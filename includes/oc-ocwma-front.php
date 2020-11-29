@@ -416,17 +416,25 @@ if (!class_exists('OCWMA_front')) {
             global $wpdb;
             $tablename=$wpdb->prefix.'ocwma_billingadress';  
           ?>
-           <select class="ocwma_select_shipping">
-            <option>...Choose address...</option>
             <?php
                $user = $wpdb->get_results( "SELECT * FROM {$tablename} WHERE type='shipping' AND userid=".$user_id);
                      foreach($user as $row){    
                       $userdata_bil=$row->userdata;
                       $user_data = unserialize($userdata_bil);
 
-                      ?> <option value="<?php echo $row->id ?>">  <?php echo $user_data['reference_field'] ?></option><?php }
+                      ?> <div class="choose-saved-shipping-address" const-val-id="<?php echo $row->id ?>">
+                      <?php 
+
+                      unset($user_data['reference_field']);
+
+                        foreach ($user_data as $value) {
+                          echo "<p>$value</p>";
+                        }
+
+                       ?>
+                    </div>
+                    <?php }
                       ?>
-            </select>
             <button class="form_option_shipping" data-id="<?php echo $user_id; ?>" style="background-color: <?php echo get_option( 'ocwma_btn_bg_clr', '#000000' ) ?>; color: <?php echo get_option( 'ocwma_font_clr', '#ffffff' ) ?>; padding: <?php echo get_option( 'ocwma_btn_padding', '8px 10px' )?>; font-size: <?php echo get_option( 'ocwma_font_size', '15' )."px" ?>;"><?php echo get_option( 'ocwma_head_title_ship', 'Add Shipping Address' );?></button>
  
             <?php
@@ -702,6 +710,7 @@ if (!class_exists('OCWMA_front')) {
             add_action('wp_ajax_nopriv_productscommentsshipping', array( $this, 'ocwma_shipping_popup_open'));
             add_action('woocommerce_before_checkout_billing_form', array( $this, 'OCWMA_all_billing_address'));
             add_action('woocommerce_before_checkout_shipping_form', array( $this, 'OCWMA_all_shipping_address'));
+            //add_action('woocommerce_before_checkout_shipping_form', array( $this, 'OCWMA_all_billing_address'));
             add_action('wp_ajax_productscommentsbilling_select', array( $this, 'ocwma_billing_data_select' ));
             add_action('wp_ajax_nopriv_productscommentsbilling_select', array( $this,'ocwma_billing_data_select'));
             add_action('wp_ajax_productscommentsshipping_select', array( $this, 'ocwma_shipping_data_select' ));

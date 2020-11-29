@@ -222,7 +222,8 @@ h3.ocwma_border {
   Saved shipping addresses
 */
 
-.choose-saved-address {
+.choose-saved-address,
+.choose-saved-shipping-address {
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -232,7 +233,9 @@ h3.ocwma_border {
 }
 
 .entry-content .choose-saved-address p,
-.choose-saved-address p{
+.choose-saved-address p.
+.entry-content .choose-saved-shipping-address p,
+.choose-saved-shipping-address p{
   font-size: 14px;
   margin: 5px 5px 5px 5px;
   line-height: 110%;
