@@ -210,7 +210,7 @@ h3.ocwma_border {
     display: inline-block;
     float: left;
 }
-.form_option_billing, .form_option_shipping {
+.form_option_billing {
   display: block;
   margin: 15px 0;
 }
@@ -222,14 +222,50 @@ h3.ocwma_border {
   Saved shipping addresses
 */
 
+.shipping-address-cont {
+  display: flex;
+  margin: 10px 0;
+}
+
+.form_option_shipping,
 .choose-saved-address,
 .choose-saved-shipping-address {
   cursor: pointer;
-  border: 1px solid #ccc;
+  border: 1px dashed #8a8a8a;
   border-radius: 5px;
-  width: 32%;
-  display: inline-block;
+  width: 25%;
+  margin: 1%;
+  padding: 10px;
   vertical-align: top;
+}
+
+.form_option_shipping{
+  display: flex;
+  justify-content: center;
+}
+
+.form_option_shipping .plus {
+  display:inline-block;
+  width:80px;
+  height:80px;
+  margin: auto;
+  
+  background:
+    linear-gradient(#fff,#fff),
+    linear-gradient(#fff,#fff),
+    #8a8a8a;
+  background-position:center;
+  background-size: 50% 4px,4px 50%; /*thickness = 2px, length = 50% (25px)*/
+  background-repeat:no-repeat;
+}
+
+.form_option_shipping .alt {
+  background:
+    linear-gradient(#8a8a8a,#8a8a8a),
+    linear-gradient(#8a8a8a,#8a8a8a);
+  background-position:center;
+  background-size: 50% 4px,4px 50%; /*thickness = 2px, length = 50% (25px)*/
+  background-repeat:no-repeat;
 }
 
 .entry-content .choose-saved-address p,

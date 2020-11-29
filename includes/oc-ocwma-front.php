@@ -417,13 +417,16 @@ if (!class_exists('OCWMA_front')) {
             global $wpdb;
             $tablename=$wpdb->prefix.'ocwma_billingadress';  
           ?>
+          <div class="shipping-address-cont">
+          <div class="form_option_shipping item" data-id="<?php echo $user_id; ?>" ><div class="plus alt" title="<?php echo get_option( 'ocwma_head_title_ship', 'Add Shipping Address' );?>"></div>
+          </div>
             <?php
                $user = $wpdb->get_results( "SELECT * FROM {$tablename} WHERE type='shipping' AND userid=".$user_id);
                      foreach($user as $row){    
                       $userdata_bil=$row->userdata;
                       $user_data = unserialize($userdata_bil);
 
-                      ?> <div class="choose-saved-shipping-address" const-val-id="<?php echo $row->id ?>">
+                      ?> <div class="choose-saved-shipping-address item" const-val-id="<?php echo $row->id ?>">
                       <?php 
 
                       unset($user_data['reference_field']);
@@ -434,11 +437,9 @@ if (!class_exists('OCWMA_front')) {
 
                        ?>
                     </div>
-                    <?php }
-                      ?>
-            <button class="form_option_shipping" data-id="<?php echo $user_id; ?>" style="background-color: <?php echo get_option( 'ocwma_btn_bg_clr', '#000000' ) ?>; color: <?php echo get_option( 'ocwma_font_clr', '#ffffff' ) ?>; padding: <?php echo get_option( 'ocwma_btn_padding', '8px 10px' )?>; font-size: <?php echo get_option( 'ocwma_font_size', '15' )."px" ?>;"><?php echo get_option( 'ocwma_head_title_ship', 'Add Shipping Address' );?></button>
- 
-            <?php
+                    <?php } ?>
+                    </div>
+                    <?php
           }
 
           function OCWMA_save_options(){
