@@ -378,6 +378,7 @@ if (!class_exists('OCWMA_front')) {
           
 
         function OCWMA_all_billing_address(){
+          return;
           $user_id  = get_current_user_id();
           global $wpdb;
           $tablename=$wpdb->prefix.'ocwma_billingadress';
