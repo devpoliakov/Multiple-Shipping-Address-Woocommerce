@@ -349,5 +349,13 @@ jQuery(document).ready(function(){
 		});
 	});
 
+	jQuery('body').on('click','#timeline-shipping',function() {
+		var billing_address =  jQuery('#billing_email').val();
+		jQuery('#shipping_email').val(billing_address);
+
+	});
+
+
+
 
 });
