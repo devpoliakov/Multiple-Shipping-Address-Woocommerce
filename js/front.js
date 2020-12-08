@@ -349,10 +349,17 @@ jQuery(document).ready(function(){
 		});
 	});
 
+	// set billing address
 	jQuery('body').on('click','#timeline-shipping',function() {
 		var billing_address =  jQuery('#billing_email').val();
 		jQuery('#shipping_email').val(billing_address);
 
+	});
+
+	// remove shipment address
+	jQuery('body').on('click','.remove-shipment-address',function(e) {
+		e.preventDefault();
+		console.log('remove address');
 	});
 
 

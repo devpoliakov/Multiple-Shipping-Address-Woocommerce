@@ -444,6 +444,8 @@ if (!class_exists('OCWMA_front')) {
 
                         echo $address_show;
 
+                        echo "<div class='remove-shipment-address' const-val-id='$row->id'>Remove</div>";
+
                        ?>
                     </div>
                     <?php } ?>

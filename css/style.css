@@ -277,6 +277,11 @@ h3.ocwma_border {
   line-height: 110%;
 }
 
+
+.remove-shipment-address{
+  display: block;
+}
+
 @media screen and (max-width: 767px){
   .ocwma_modal-content {
       width: 96%;
