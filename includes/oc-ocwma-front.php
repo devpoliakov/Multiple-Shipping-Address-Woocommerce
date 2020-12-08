@@ -431,9 +431,18 @@ if (!class_exists('OCWMA_front')) {
 
                       unset($user_data['reference_field']);
 
-                        foreach ($user_data as $value) {
-                          echo "<p>$value</p>";
+                      $address_show = '';
+
+                        foreach ($user_data as $key => $value) {
+                          if(in_array($key, array('shipping_first_name', 'shipping_last_name'))){
+                            $address_show .= "<span title='$key'><strong> $value</strong></span>";  
+                          }else{
+                            $address_show .= "<span title='$key'> $value</span>";  
+                          }
+                          
                         }
+
+                        echo $address_show;
 
                        ?>
                     </div>
