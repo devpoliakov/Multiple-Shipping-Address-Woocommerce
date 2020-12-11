@@ -532,6 +532,7 @@ if (!class_exists('OCWMA_front')) {
           function ocwma_validate_shipping_form_fields_func() {
             global $wpdb; 
             $tablename=$wpdb->prefix.'ocwma_billingadress';
+            $_REQUEST['shipping_country'] = 'Qatar';
             
             $countries = new WC_Countries();
             $country = $countries->get_base_country();
