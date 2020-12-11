@@ -151,33 +151,6 @@ jQuery(document).ready(function(){
 
 
 
-
-	jQuery('body').on('click','.form_option_shipping',function(){
-		jQuery('body').addClass("ocwma_shipping_popup_body");
-		jQuery('body').append('<div class="ocwqv_loading"><img src="'+ object_name +'/images/loader.gif" class="ocwqv_loader"></div>');
-		var loading = jQuery('.ocwqv_loading');
-		loading.show();
-
-		var id = jQuery(this).data("id");
-
-		var current = jQuery(this);
-		jQuery.ajax({
-			url:ajax_url,
-			type:'POST',
-			data:'action=productscommentsshipping&popup_id_pro='+id,
-			success : function(response) {
-				var loading = jQuery('.ocwqv_loading');
-				loading.remove(); 
-				jQuery("#ocwma_shipping_popup").css("display","block");
-				jQuery("#ocwma_shipping_popup").html(response);
-
-			},
-			error: function() {
-				alert('Error occured');
-			}
-		});
-	   return false; 
-    });
 	var modal = document.getElementById("ocwma_shipping_popup");
 	var span = document.getElementsByClassName("ocwma_close")[0];
 	jQuery(document).on('click','.ocwma_close',function(){
@@ -265,31 +238,34 @@ jQuery(document).ready(function(){
 	});
 
 
-	jQuery('body').on('click','#oc_add_shipping_form_submit',function() {
-		jQuery('#oc_add_shipping_form').attr('onsubmit','return false;');
-		jQuery('#oc_add_shipping_form input').removeClass('ocwma_inerror');
-		jQuery('#oc_add_shipping_form select').removeClass('ocwma_inerror');
+	jQuery('body').on('click','.form_option_shipping',function() {
+		
+		console.log(jQuery('.checkout.woocommerce-checkout.processing').serialize());
 
 		jQuery.ajax({
 			url:ajax_url,
 			type:'POST',
-			data: jQuery('#oc_add_shipping_form').serialize() + "&action=ocwma_validate_shipping_form_fields",
+			data: jQuery('.checkout.woocommerce-checkout.processing').serialize() + "&action=ocwma_validate_shipping_form_fields",
 			dataType: 'JSON',
 			success : function(response) {
+
+				console.log(response);
+/*
 				var added = response['added'];
 				var field_errors = response.field_errors;
 				if( added == 'false' ) {
-					jQuery.each(field_errors, function(i, item) {
-					    jQuery("#oc_add_shipping_form #"+i).addClass('ocwma_inerror');
-					});
+					console.log('false');
 				} else {
 					location.reload();
 				}
+				*/
 			},
 			error: function() {
 				alert('Error occured');
 			}
 		});
+
+		
 	});
 
 

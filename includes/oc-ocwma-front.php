@@ -543,17 +543,15 @@ if (!class_exists('OCWMA_front')) {
             $billing_data = array();
             $field_errors = array();
 
-            $billing_data['reference_field'] = sanitize_text_field($_REQUEST['reference_field']);
+            $billing_data['reference_field'] = time();
 
-            if($_REQUEST['reference_field'] == '') {
-              $field_errors['oc_refname'] = '1';
-            }
+
 
             foreach ($address_fields as $key => $field) {
               $billing_data[$key] = sanitize_text_field($_REQUEST[$key]);
 
               if($_REQUEST[$key] == '') {
-                if($field['required'] == 1) {
+                if($field['required'] == 1  && $key != 'shipping_postcode') {
                   $field_errors[$key] = '1';
                 }
               }
@@ -566,7 +564,7 @@ if (!class_exists('OCWMA_front')) {
               $wpdb->insert($tablename, array(
                   'userid' =>$ocwma_userid,
                   'userdata' =>$billing_data_serlized,
-                  'type' =>sanitize_text_field($_REQUEST['type']), 
+                  'type' => 'shipping', 
               ));
 
               $added = 'true';
