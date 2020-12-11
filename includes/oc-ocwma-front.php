@@ -435,9 +435,11 @@ if (!class_exists('OCWMA_front')) {
 
                         foreach ($user_data as $key => $value) {
                           if(in_array($key, array('shipping_first_name', 'shipping_last_name'))){
-                            $address_show .= "<span title='$key'><strong> $value</strong></span>";  
+                            $address_show .= "<span title='$key'><strong> $value</strong></span> ";  
+                          }else if(in_array($key, array('shipping_Mobile_number'))){
+                            $address_show .= "</br><span title='$key'>$value</span></br> ";  
                           }else{
-                            $address_show .= "<span title='$key'> $value</span>";  
+                            $address_show .= "<span title='$key'> $value</span> ";  
                           }
                           
                         }
