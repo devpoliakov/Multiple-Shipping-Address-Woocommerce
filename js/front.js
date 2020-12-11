@@ -359,7 +359,26 @@ jQuery(document).ready(function(){
 	// remove shipment address
 	jQuery('body').on('click','.remove-shipment-address',function(e) {
 		e.preventDefault();
+		var address_id =  jQuery(this).attr('const-val-id');	;
 		console.log('remove address');
+		
+		jQuery.ajax({
+			url:ajax_url,
+			type:'POST',
+			data: {
+				action : 'oc_remove_shipping_address',
+				address_id : address_id
+			},
+			success : function(response) {
+
+				if( response == 1 ) {
+					jQuery("#saved-shipping-address-"+address_id).remove();
+				} else {
+					location.reload();
+				}
+			}
+		});
+		
 	});
 
 

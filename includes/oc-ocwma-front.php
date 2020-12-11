@@ -426,7 +426,7 @@ if (!class_exists('OCWMA_front')) {
                       $userdata_bil=$row->userdata;
                       $user_data = unserialize($userdata_bil);
 
-                      ?> <div class="choose-saved-shipping-address item" const-val-id="<?php echo $row->id ?>">
+                      ?> <div class="choose-saved-shipping-address item" const-val-id="<?php echo $row->id ?>" id="saved-shipping-address-<?php echo $row->id ?>">
                       <?php 
 
                       unset($user_data['reference_field']);
@@ -638,6 +638,24 @@ if (!class_exists('OCWMA_front')) {
             exit;
           }
 
+          function oc_remove_shipping_address_func(){
+            global $wpdb; 
+            $tablename=$wpdb->prefix.'ocwma_billingadress';
+            
+            $address_id = sanitize_text_field($_REQUEST['address_id']);
+            $ocwma_userid = get_current_user_id();
+
+            $result = $wpdb->delete($tablename,array( 
+              'id' =>$address_id,
+              'userid' =>$ocwma_userid));
+
+            $return_arr = $result;
+
+            echo json_encode($return_arr);
+
+            exit;
+          }
+
 
           function ocwma_validate_edit_shipping_form_fields_func() {
             global $wpdb; 
@@ -736,6 +754,8 @@ if (!class_exists('OCWMA_front')) {
             add_action('wp_ajax_nopriv_ocwma_validate_edit_billing_form_fields', array( $this, 'ocwma_validate_edit_billing_form_fields_func'));
             add_action('wp_ajax_ocwma_validate_edit_shipping_form_fields', array( $this, 'ocwma_validate_edit_shipping_form_fields_func' ));
             add_action('wp_ajax_nopriv_ocwma_validate_edit_shipping_form_fields', array( $this, 'ocwma_validate_edit_shipping_form_fields_func'));
+            add_action('wp_ajax_oc_remove_shipping_address', array( $this, 'oc_remove_shipping_address_func' ));
+            add_action('wp_ajax_nopriv_oc_remove_shipping_address', array( $this, 'oc_remove_shipping_address_func'));
             add_action( 'init',  array($this, 'OCWMA_save_options'));
           }
           
