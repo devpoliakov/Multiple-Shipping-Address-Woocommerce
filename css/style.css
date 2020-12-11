@@ -282,6 +282,11 @@ h3.ocwma_border {
   display: block;
 }
 
+
+.select2.select2-container.select2-container--default{
+  width: 100%!important;
+}
+
 @media screen and (max-width: 767px){
   .ocwma_modal-content {
       width: 96%;
