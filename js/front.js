@@ -121,8 +121,9 @@ jQuery(document).ready(function(){
 
 
 jQuery(document).ready(function(){
-	jQuery('.ocwma_select_shipping').change(function(){
-        var sid = jQuery(this).val();	 
+	//jQuery('.ocwma_select_shipping').change(function(){
+	jQuery('.choose-saved-shipping-address').click(function(){
+        var sid = jQuery(this).attr('const-val-id');	 
 		var current = jQuery(this);	
 			jQuery.ajax({
 			url:ajax_url,
