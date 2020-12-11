@@ -138,8 +138,9 @@ jQuery(document).ready(function(){
                 jQuery("#shipping_address_1").val(response.shipping_address_1);
                 jQuery("#shipping_address_2").val(response.shipping_address_2);
                 jQuery("#shipping_city").val(response.shipping_city);
-                jQuery("#shipping_state").val(response.shipping_state).change();
+                jQuery("#shipping_region_select").val(response.shipping_region_select).change();
                 jQuery("#shipping_postcode").val(response.shipping_postcode);
+                jQuery("#shipping_address_comment").val(response.shipping_address_comment);
             
 			},
 			error: function() {
@@ -250,7 +251,7 @@ jQuery(document).ready(function(){
 			success : function(response) {
 
 				console.log(response);
-/*
+
 				var added = response['added'];
 				var field_errors = response.field_errors;
 				if( added == 'false' ) {
@@ -258,7 +259,7 @@ jQuery(document).ready(function(){
 				} else {
 					location.reload();
 				}
-				*/
+				
 			},
 			error: function() {
 				alert('Error occured');

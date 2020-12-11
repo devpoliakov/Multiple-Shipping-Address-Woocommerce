@@ -557,6 +557,9 @@ if (!class_exists('OCWMA_front')) {
               }
             }
 
+            $billing_data['shipping_region_select'] = sanitize_text_field($_REQUEST['shipping_region_select']);
+            $billing_data['shipping_address_comment'] = sanitize_text_field($_REQUEST['shipping_address_comment']);
+
             unset($field_errors['shipping_state']);
 
             if(empty($field_errors)) {
