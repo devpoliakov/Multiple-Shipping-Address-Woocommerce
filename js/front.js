@@ -150,6 +150,19 @@ jQuery(document).ready(function(){
 	});
 });
 
+jQuery(document).ready(function(){
+	jQuery('.choose-saved-shipping-address-from-order-item').click(function(){
+        var city = jQuery(this).find('span[cont-type=city]').attr('cont-val');	 
+        var street = jQuery(this).find('span[cont-type=street]').attr('cont-val');	 
+
+                jQuery("#shipping_address_1").val(street);
+                jQuery("#shipping_city").val(city);
+
+            
+
+	});
+});
+
 
 
 	var modal = document.getElementById("ocwma_shipping_popup");

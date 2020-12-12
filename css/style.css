@@ -238,6 +238,23 @@ h3.ocwma_border {
   padding: 10px;
   vertical-align: top;
 }
+.shipping-address-cont.orders {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.choose-saved-shipping-address-from-order-item {
+  cursor: pointer;
+  border: 1px dashed #8a8a8a;
+  border-radius: 5px;
+  width: 18%;
+  margin: 1%;
+  padding: 10px;
+  vertical-align: top;
+
+}
 
 .form_option_shipping{
   display: flex;

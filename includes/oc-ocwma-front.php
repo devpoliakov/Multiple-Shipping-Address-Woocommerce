@@ -451,6 +451,68 @@ if (!class_exists('OCWMA_front')) {
                        ?>
                     </div>
                     <?php } ?>
+                  </div>
+
+                  <div class="shipping-address-cont orders">
+
+                  <?php 
+
+                  $customer_orders_post = get_posts( array(
+                      'numberposts' => 5,
+                      'meta_key'    => '_customer_user',
+                      'meta_value'  => $user_id,
+                      'post_type'   => wc_get_order_types(),
+                      //'post_status' => array_keys('wc-processing' ),
+                      'post_status' => array_keys( wc_get_order_statuses() ),
+                  ) );
+
+
+                  foreach($customer_orders_post as $order_post){
+
+                      //$userdata_bil=$row->userdata;
+                      //$user_data = unserialize($userdata_bil);
+
+                      ?> <div class="choose-saved-shipping-address-from-order-item" const-val-id="<?php echo $order->ID ?>" id="saved-shipping-address-<?php echo $order->ID ?>">
+                      <?php 
+                      $order = wc_get_order( $order_post->ID);
+                      
+                      if($order->get_address('shipping')["city"] == '' &&
+                        $order->get_address('shipping')["address_1"] ==''
+                    ){
+
+                        $city = $order->get_address('billing')["city"];
+                        $street =  $order->get_address('billing')["Street"];
+                        //print_r($order->get_address('billing'));
+
+                      } else{
+                        $city =  $order->get_address('shipping')["city"];
+                        $street =  $order->get_address('shipping')["address_1"];
+                      }
+                      echo "<span cont-type='city' cont-val='$city'>$city</span> <br>";
+                      echo "<span cont-type='street' cont-val='$street'>$street</span>";
+
+
+
+
+                      //echo $order->shipping_address_1 . '<br>';
+
+/*
+echo $order->get_shipping_address_1();
+echo $order->get_shipping_Building_number();
+echo $order->get_shipping_Mobile_number();
+*/
+
+                      
+
+                        
+
+
+                       ?>
+                    </div>
+                    <?php } ?>
+
+                  
+
                     </div>
                     <?php
           }
