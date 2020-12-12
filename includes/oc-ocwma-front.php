@@ -476,16 +476,21 @@ if (!class_exists('OCWMA_front')) {
                       <?php 
                       $order = wc_get_order( $order_post->ID);
                       
-                      if($order->get_address('shipping')["city"] == '' &&
+                      if($order->get_address('shipping')["city"] == '' 
+                    ){
+                        $city = $order->get_address('billing')["city"];
+
+                      } else{
+                        $city =  $order->get_address('shipping')["city"];
+                      }   
+
+                      if(
                         $order->get_address('shipping')["address_1"] ==''
                     ){
-
-                        $city = $order->get_address('billing')["city"];
                         $street =  $order->get_address('billing')["Street"];
                         //print_r($order->get_address('billing'));
 
                       } else{
-                        $city =  $order->get_address('shipping')["city"];
                         $street =  $order->get_address('shipping')["address_1"];
                       }
                       echo "<span cont-type='city' cont-val='$city'>$city</span> <br>";
