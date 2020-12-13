@@ -460,7 +460,7 @@ if (!class_exists('OCWMA_front')) {
 
                     $order = wc_get_order( $order_post->ID);
 
-                      ?> <div class="choose-saved-shipping-address-from-order-item" id="saved-shipping-address-<?php echo $order_post->ID ?>" const-data='<?php echo json_encode( $order->get_address("shipping")); ?>' >
+                      ?> <div class="choose-saved-shipping-address-from-order-item" id="saved-shipping-address-<?php echo $order_post->ID ?>" const-data='<?php echo json_encode( $order->get_address("shipping")); ?>' const-data-bill='<?php echo json_encode( $order->get_address("billing")); ?>' >
                       <?php 
                       
                       

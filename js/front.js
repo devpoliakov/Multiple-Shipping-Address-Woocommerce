@@ -121,7 +121,6 @@ jQuery(document).ready(function(){
 
 
 jQuery(document).ready(function(){
-	//jQuery('.ocwma_select_shipping').change(function(){
 	jQuery('.choose-saved-shipping-address').click(function(){
         var data = jQuery(this).attr('const-data');	 
         var response = JSON.parse(data);
@@ -130,14 +129,11 @@ jQuery(document).ready(function(){
 
             jQuery("#shipping_first_name").val(response.shipping_first_name);
             jQuery("#shipping_last_name").val(response.shipping_last_name);
-            jQuery("#shipping_company").val(response.shipping_company);
-			jQuery("#shipping_country").val(response.shipping_country).change();
             jQuery("#shipping_address_1").val(response.shipping_address_1);
             jQuery("#shipping_address_2").val(response.shipping_address_2);
             jQuery("#shipping_Building_number").val(response.shipping_Building_number);
             jQuery("#shipping_city").val(response.shipping_city);
             jQuery("#shipping_region_select").val(response.shipping_region_select).change();
-            jQuery("#shipping_postcode").val(response.shipping_postcode);
             jQuery("#shipping_Mobile_number").val(response.shipping_Mobile_number);
             jQuery("#shipping_address_comment").val(response.shipping_address_comment);
             
@@ -150,27 +146,46 @@ jQuery(document).ready(function(){
 });
 
 jQuery(document).ready(function(){
-	//jQuery('.ocwma_select_shipping').change(function(){
 	jQuery('.choose-saved-shipping-address-from-order-item').click(function(){
         var data = jQuery(this).attr('const-data');	 
         var response = JSON.parse(data);
 
+        var dataBill = jQuery(this).attr('const-data-bill');	 
+        var responseBill = JSON.parse(dataBill);
+
         console.log(response);
-//{"shipping_first_name":"Yurii","shipping_last_name":"Poliakov","shipping_Mobile_number":"33343234","shipping_country":"Qatar","shipping_postcode":"","shipping_region_select":"doha","shipping_city":"Lviv","shipping_Building_number":"556","shipping_address_1":"nova","shipping_address_comment":"test comment"}
-//{"first_name":"test","last_name":"developer","company":"","address_1":"","address_2":"","city":"Lviv-first","state":"","postcode":"","country":"QA","Building_number":"33333"}
+        console.log(response.Mobile_number);
+        console.log(responseBill);
 
 	// because we have different names for billing / shipment fields
 
-            jQuery("#shipping_first_name").val(response.shipping_first_name);
-            jQuery("#shipping_last_name").val(response.shipping_last_name);
-            jQuery("#shipping_company").val(response.shipping_company);
-			jQuery("#shipping_country").val(response.shipping_country).change();
-            jQuery("#shipping_address_1").val(response.shipping_address_1);
+            jQuery("#shipping_first_name").val(response.first_name);
+            jQuery("#shipping_last_name").val(response.last_name);
+			if(response.address_1){
+				jQuery("#shipping_address_1").val(response.address_1);				
+			}else{
+				jQuery("#shipping_address_1").val(responseBill.Street);
+			}
+
+			if(response.region_select){
+				jQuery("#shipping_region_select").val(response.region_select).change();
+			}
+
+			
+
+            jQuery("#shipping_Building_number").val(response.Building_number);
+
             jQuery("#shipping_address_2").val(response.shipping_address_2);
-            jQuery("#shipping_city").val(response.shipping_city);
-            jQuery("#shipping_region_select").val(response.shipping_region_select).change();
-            jQuery("#shipping_postcode").val(response.shipping_postcode);
+            jQuery("#shipping_city").val(response.city);
             jQuery("#shipping_address_comment").val(response.shipping_address_comment);
+
+
+            if(response.Mobile_number){
+            	jQuery("#shipping_Mobile_number").val(response.Mobile_number);	
+            }else{
+            	jQuery("#shipping_Mobile_number").val(responseBill.phone);
+            }
+            
             
 
 
@@ -217,7 +232,7 @@ jQuery(document).ready(function(){
 				loading.remove(); 
 				jQuery("#ocwma_shipping_popup").css("display","block");
 				jQuery("#ocwma_shipping_popup").html(response);
-				jQuery( '#shipping_country' ).trigger( 'change' );
+				//jQuery( '#shipping_country' ).trigger( 'change' );
 				jQuery( '#shipping_state' ).trigger( 'change' );
 
 			},
