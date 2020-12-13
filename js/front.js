@@ -126,6 +126,41 @@ jQuery(document).ready(function(){
         var data = jQuery(this).attr('const-data');	 
         var response = JSON.parse(data);
 
+        console.log(response);
+
+            jQuery("#shipping_first_name").val(response.shipping_first_name);
+            jQuery("#shipping_last_name").val(response.shipping_last_name);
+            jQuery("#shipping_company").val(response.shipping_company);
+			jQuery("#shipping_country").val(response.shipping_country).change();
+            jQuery("#shipping_address_1").val(response.shipping_address_1);
+            jQuery("#shipping_address_2").val(response.shipping_address_2);
+            jQuery("#shipping_Building_number").val(response.shipping_Building_number);
+            jQuery("#shipping_city").val(response.shipping_city);
+            jQuery("#shipping_region_select").val(response.shipping_region_select).change();
+            jQuery("#shipping_postcode").val(response.shipping_postcode);
+            jQuery("#shipping_Mobile_number").val(response.shipping_Mobile_number);
+            jQuery("#shipping_address_comment").val(response.shipping_address_comment);
+            
+
+
+			
+
+
+	});
+});
+
+jQuery(document).ready(function(){
+	//jQuery('.ocwma_select_shipping').change(function(){
+	jQuery('.choose-saved-shipping-address-from-order-item').click(function(){
+        var data = jQuery(this).attr('const-data');	 
+        var response = JSON.parse(data);
+
+        console.log(response);
+//{"shipping_first_name":"Yurii","shipping_last_name":"Poliakov","shipping_Mobile_number":"33343234","shipping_country":"Qatar","shipping_postcode":"","shipping_region_select":"doha","shipping_city":"Lviv","shipping_Building_number":"556","shipping_address_1":"nova","shipping_address_comment":"test comment"}
+//{"first_name":"test","last_name":"developer","company":"","address_1":"","address_2":"","city":"Lviv-first","state":"","postcode":"","country":"QA","Building_number":"33333"}
+
+	// because we have different names for billing / shipment fields
+
             jQuery("#shipping_first_name").val(response.shipping_first_name);
             jQuery("#shipping_last_name").val(response.shipping_last_name);
             jQuery("#shipping_company").val(response.shipping_company);
@@ -141,19 +176,6 @@ jQuery(document).ready(function(){
 
 			
 
-
-	});
-});
-
-jQuery(document).ready(function(){
-	jQuery('.choose-saved-shipping-address-from-order-item').click(function(){
-        var city = jQuery(this).find('span[cont-type=city]').attr('cont-val');	 
-        var street = jQuery(this).find('span[cont-type=street]').attr('cont-val');	 
-
-                jQuery("#shipping_address_1").val(street);
-                jQuery("#shipping_city").val(city);
-
-            
 
 	});
 });

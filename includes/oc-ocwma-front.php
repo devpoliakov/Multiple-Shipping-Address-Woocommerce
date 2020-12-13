@@ -458,9 +458,11 @@ if (!class_exists('OCWMA_front')) {
                       //$userdata_bil=$row->userdata;
                       //$user_data = unserialize($userdata_bil);
 
-                      ?> <div class="choose-saved-shipping-address-from-order-item" const-val-id="<?php echo $order->ID ?>" id="saved-shipping-address-<?php echo $order->ID ?>">
+                    $order = wc_get_order( $order_post->ID);
+
+                      ?> <div class="choose-saved-shipping-address-from-order-item" id="saved-shipping-address-<?php echo $order_post->ID ?>" const-data='<?php echo json_encode( $order->get_address("shipping")); ?>' >
                       <?php 
-                      $order = wc_get_order( $order_post->ID);
+                      
                       
                       if($order->get_address('shipping')["city"] == '' 
                     ){
@@ -479,6 +481,7 @@ if (!class_exists('OCWMA_front')) {
                       } else{
                         $street =  $order->get_address('shipping')["address_1"];
                       }
+                      echo $order->ID . '<br>';
                       echo "<span cont-type='city' cont-val='$city'>$city</span> <br>";
                       echo "<span cont-type='street' cont-val='$street'>$street</span>";
 

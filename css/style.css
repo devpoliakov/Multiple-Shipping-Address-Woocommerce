@@ -296,7 +296,12 @@ h3.ocwma_border {
 
 
 .remove-shipment-address{
-  display: block;
+  display: table;
+}
+
+.remove-shipment-address:hover{
+  display: table;
+  color: #ccc;
 }
 
 
