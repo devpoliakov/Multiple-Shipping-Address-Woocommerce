@@ -481,9 +481,17 @@ if (!class_exists('OCWMA_front')) {
                       } else{
                         $street =  $order->get_address('shipping')["address_1"];
                       }
-                      echo $order->ID . '<br>';
+                      //echo $order->ID . '<br>';
+                      echo "<span> <strong>" .
+                      $order->get_address('shipping')['first_name'] . " " .
+                      $order->get_address('shipping')['last_name'] .
+                      "</strong></span> <br>";
+                      echo "<span cont-type='city' cont-val='$city'>". $order->get_address('shipping')["shipping_zone"]. "</span> <br>";
                       echo "<span cont-type='city' cont-val='$city'>$city</span> <br>";
-                      echo "<span cont-type='street' cont-val='$street'>$street</span>";
+                      echo "<span cont-type='street' cont-val='$street'>$street</span> / ";
+                      echo "<span cont-type='street' cont-val='$street'> " .
+                      $order->get_address('shipping')['Building_number'] .
+                      "</span>";
 
 
 

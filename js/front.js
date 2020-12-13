@@ -110,6 +110,7 @@ jQuery(document).ready(function(){
                 jQuery("#billing_postcode").val(response.billing_postcode);
                 jQuery("#billing_phone").val(response.billing_phone);
                 jQuery("#billing_email").val(response.billing_email);
+                jQuery("#shipping_zone").val(response.shipping_zone);
 			},
 			error: function() {
 				alert('Error occured');
@@ -136,6 +137,7 @@ jQuery(document).ready(function(){
             jQuery("#shipping_region_select").val(response.shipping_region_select).change();
             jQuery("#shipping_Mobile_number").val(response.shipping_Mobile_number);
             jQuery("#shipping_address_comment").val(response.shipping_address_comment);
+            jQuery("#shipping_zone").val(response.shipping_zone);
             
 
 
@@ -185,7 +187,7 @@ jQuery(document).ready(function(){
             }else{
             	jQuery("#shipping_Mobile_number").val(responseBill.phone);
             }
-            
+            jQuery("#shipping_zone").val(response.zone);
             
 
 
