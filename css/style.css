@@ -227,6 +227,10 @@ h3.ocwma_border {
   margin: 10px 0;
 }
 
+.woocommerce-MyAccount-content .shipping-address-cont.orders{
+  display: none;
+}
+
 .form_option_shipping,
 .choose-saved-address,
 .choose-saved-shipping-address {

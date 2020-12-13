@@ -801,7 +801,7 @@ echo $order->get_shipping_Mobile_number();
             dbDelta( $sql );
 
             add_filter( 'woocommerce_account_menu_items', array( $this, 'ocwma_wc_address_book_add_to_menu' ),10);
-            add_action( 'woocommerce_account_edit-address_endpoint',array( $this, 'ocwma_my_account_endpoint_content'));
+            add_action( 'woocommerce_account_edit-address_endpoint',array( $this, 'OCWMA_all_shipping_address'));
             add_action('wp_footer', array( $this, 'ocwma_popup_div_footer' ));
             add_action('wp_ajax_productscommentsbilling', array( $this, 'ocwma_billing_popup_open' ));
             add_action('wp_ajax_nopriv_productscommentsbilling', array( $this, 'ocwma_billing_popup_open'));
