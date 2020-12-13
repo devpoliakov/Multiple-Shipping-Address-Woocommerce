@@ -123,30 +123,25 @@ jQuery(document).ready(function(){
 jQuery(document).ready(function(){
 	//jQuery('.ocwma_select_shipping').change(function(){
 	jQuery('.choose-saved-shipping-address').click(function(){
-        var sid = jQuery(this).attr('const-val-id');	 
-		var current = jQuery(this);	
-			jQuery.ajax({
-			url:ajax_url,
-			dataType: 'json',
-			type:'POST',
-			data:'action=productscommentsshipping_select&sid='+sid,
-			success : function(response) {
-               jQuery("#shipping_first_name").val(response.shipping_first_name);
-                jQuery("#shipping_last_name").val(response.shipping_last_name);
-                jQuery("#shipping_company").val(response.shipping_company);
-				jQuery("#shipping_country").val(response.shipping_country).change();
-                jQuery("#shipping_address_1").val(response.shipping_address_1);
-                jQuery("#shipping_address_2").val(response.shipping_address_2);
-                jQuery("#shipping_city").val(response.shipping_city);
-                jQuery("#shipping_region_select").val(response.shipping_region_select).change();
-                jQuery("#shipping_postcode").val(response.shipping_postcode);
-                jQuery("#shipping_address_comment").val(response.shipping_address_comment);
+        var data = jQuery(this).attr('const-data');	 
+        var response = JSON.parse(data);
+
+            jQuery("#shipping_first_name").val(response.shipping_first_name);
+            jQuery("#shipping_last_name").val(response.shipping_last_name);
+            jQuery("#shipping_company").val(response.shipping_company);
+			jQuery("#shipping_country").val(response.shipping_country).change();
+            jQuery("#shipping_address_1").val(response.shipping_address_1);
+            jQuery("#shipping_address_2").val(response.shipping_address_2);
+            jQuery("#shipping_city").val(response.shipping_city);
+            jQuery("#shipping_region_select").val(response.shipping_region_select).change();
+            jQuery("#shipping_postcode").val(response.shipping_postcode);
+            jQuery("#shipping_address_comment").val(response.shipping_address_comment);
             
-			},
-			error: function() {
-				alert('Error occured');
-			}
-		});
+
+
+			
+
+
 	});
 });
 

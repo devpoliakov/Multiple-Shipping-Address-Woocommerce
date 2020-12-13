@@ -361,21 +361,7 @@ if (!class_exists('OCWMA_front')) {
              echo json_encode($user_data);
              exit();
           }
-          /* shipping */
-          
-          function ocwma_shipping_data_select(){
-            $user_id = get_current_user_id();
-            $select_id = sanitize_text_field($_REQUEST['sid']);
-            global $wpdb;
-              $tablename=$wpdb->prefix.'ocwma_billingadress'; 
-              $user = $wpdb->get_results( "SELECT * FROM {$tablename} WHERE type='shipping' AND userid=".$user_id." AND id=".$select_id);
-              $user_data = unserialize($user[0]->userdata);
-             echo json_encode($user_data);
-             exit();
-          }
-      
-      
-          
+                 
 
         function OCWMA_all_billing_address(){
           return;
@@ -426,7 +412,7 @@ if (!class_exists('OCWMA_front')) {
                       $userdata_bil=$row->userdata;
                       $user_data = unserialize($userdata_bil);
 
-                      ?> <div class="choose-saved-shipping-address item" const-val-id="<?php echo $row->id ?>" id="saved-shipping-address-<?php echo $row->id ?>">
+                      ?> <div class="choose-saved-shipping-address item" const-val-id="<?php echo $row->id ?>" id="saved-shipping-address-<?php echo $row->id ?>" const-data='<?php echo json_encode( unserialize( $userdata_bil)); ?>'>
                       <?php 
 
                       unset($user_data['reference_field']);
@@ -815,8 +801,6 @@ echo $order->get_shipping_Mobile_number();
             //add_action('woocommerce_before_checkout_shipping_form', array( $this, 'OCWMA_all_billing_address'));
             add_action('wp_ajax_productscommentsbilling_select', array( $this, 'ocwma_billing_data_select' ));
             add_action('wp_ajax_nopriv_productscommentsbilling_select', array( $this,'ocwma_billing_data_select'));
-            add_action('wp_ajax_productscommentsshipping_select', array( $this, 'ocwma_shipping_data_select' ));
-            add_action('wp_ajax_nopriv_productscommentsshipping_select', array( $this,'ocwma_shipping_data_select'));
             add_action('wp_ajax_ocwma_validate_billing_form_fields', array( $this, 'ocwma_validate_billing_form_fields_func' ));
             add_action('wp_ajax_nopriv_ocwma_validate_billing_form_fields', array( $this, 'ocwma_validate_billing_form_fields_func'));
             add_action('wp_ajax_ocwma_validate_shipping_form_fields', array( $this, 'ocwma_validate_shipping_form_fields_func' ));
