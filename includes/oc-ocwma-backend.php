@@ -23,42 +23,13 @@ if (!class_exists('OCWMA_admin_menu')) {
                 <div class="ocwma-container">
                     <form method="post" >
                       <?php wp_nonce_field( 'ocwma_nonce_action', 'ocwma_nonce_field' ); ?>   
-                            <div class="ocwma_cover_div">
-                                <table class="ocwma_data_table">
-                                    <h2>General Setting</h2>
-                                    <tr>
-                                        <th>MAX Address</th>
-                                        <td>
-                                            <input type="number" name="ocwma_max_adress" value="<?php if(!empty(get_option( 'ocwma_max_adress' ))){ echo get_option( 'ocwma_max_adress' ); }else{ echo "3";} ?>" disabled>
-                                            <label class="ocwma_pro_link">Only available in pro version <a href="https://www.xeeshop.com/product/multiple-shipping-address-woocommerce-pro/" target="_blank">link</a></label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                        
                             <div class="ocwma_cover_div">
                                 <table class="ocwma_data_table">
                                     <h2>Multiple Button Style</h2>
-                                    <tr>
-                                        <th>Button Title for Billing</th>
-                                        <td>
-                                            <input type="text" name="ocwma_head_title" value="<?php if(!empty(get_option( 'ocwma_head_title' ))){ echo get_option( 'ocwma_head_title' ); }else{ echo "Add Billing Address";} ?>" disabled>
-                                            <label class="ocwma_pro_link">Only available in pro version <a href="https://www.xeeshop.com/product/multiple-shipping-address-woocommerce-pro/" target="_blank">link</a></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Button Title for Shipping</th>
-                                        <td>
-                                            <input type="text" name="ocwma_head_title_ship" value="<?php if(!empty(get_option( 'ocwma_head_title_ship' ))){ echo get_option( 'ocwma_head_title_ship' ); }else{ echo "Add Shipping Address";} ?>" disabled>
-                                            <label class="ocwma_pro_link">Only available in pro version <a href="https://www.xeeshop.com/product/multiple-shipping-address-woocommerce-pro/" target="_blank">link</a></label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Font size</th>
-                                        <td>
-                                            <input type="text" name="ocwma_font_size" value="<?php if(!empty(get_option( 'ocwma_font_size' ))){ echo get_option( 'ocwma_font_size' ); }else{ echo "15";} ?>" disabled>
-                                            <label class="ocwma_pro_link">Only available in pro version <a href="https://www.xeeshop.com/product/multiple-shipping-address-woocommerce-pro/" target="_blank">link</a></label>
-                                        </td>
-                                    </tr>
+                             
+                                   
+                                  
                                     <tr>
                                         <th>Font color</th>
                                         <td>
