@@ -137,7 +137,10 @@ img.ocma_loader{
 }
 .select2-container{ z-index: 9999999; }
 
-.woocommerce .select2-container{ z-index: 777; }
+.woocommerce .select2-container{ 
+  /* z-index: 777;  */
+  z-index: 70; 
+}
 
 .ocwma_bill_table td {
     padding: 0px;
@@ -224,10 +227,13 @@ h3.ocwma_border {
 
 .shipping-address-cont {
   display: flex;
+  flex-direction: row;
+  justify-content: start;
   margin: 10px 0;
 }
 
-.woocommerce-MyAccount-content .shipping-address-cont.orders{
+.woocommerce-MyAccount-content .shipping-address-cont.orders,
+.woocommerce-MyAccount-content .form_option_shipping{
   display: none;
 }
 
@@ -237,7 +243,7 @@ h3.ocwma_border {
   cursor: pointer;
   border: 1px dashed #8a8a8a;
   border-radius: 5px;
-  width: 25%;
+  width: 24%;
   margin: 1%;
   padding: 10px;
   vertical-align: top;
@@ -245,7 +251,7 @@ h3.ocwma_border {
 .shipping-address-cont.orders {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 
@@ -257,7 +263,7 @@ h3.ocwma_border {
   margin: 1%;
   padding: 10px;
   vertical-align: top;
-
+  word-wrap: break-word;
 }
 
 .form_option_shipping{
@@ -298,23 +304,108 @@ h3.ocwma_border {
   line-height: 110%;
 }
 
-
-.remove-shipment-address{
-  display: table;
+.address-btn{
+  border-radius: 5px;
+  border: 1px dashed #ccc;
+  display: inline-block;
+  padding: 5px 0px;
+  width: 48%;
+  text-align: center;
+}
+.address-btn:hover{
+  color: #ccc;
 }
 
-.remove-shipment-address:hover{
-  display: table;
-  color: #ccc;
+.clr{
+  display: block;
+  clear: both;
+}
+
+#shipping_country_field{
+  float: left;
 }
 
 
 .select2.select2-container.select2-container--default{
   width: 100%!important;
 }
+#generalDataCheckout {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  margin: auto; 
+}
+
+#generalDataCheckout p {
+  display: inline-block;
+  width: 32%;
+  
+  word-wrap: break-word;
+}
+
+/* general data */
+
+.row.row-data-cont{
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+
+}
+h2.row-data-title{
+  display: block;
+  text-transform: capitalize;
+}
+.row.row-data-cont .column-field{
+  flex: 50%;
+  width: 50%;
+  word-wrap: break-word;
+}
+
+.row.row-data-cont .td-field{  
+  /* Optional */
+  position: relative;
+  margin-bottom: 2%;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  border: 1px solid #F5F7F6;
+
+  color: #000;
+  padding: 15px;
+  box-sizing: border-box;
+  width: 96%;
+  display: none;
+}
+
+.site-main.post-130.page{
+  max-width: 1200px;
+  margin: auto;
+
+}
+    
+
 
 @media screen and (max-width: 767px){
   .ocwma_modal-content {
       width: 96%;
+  }
+
+  .shipping-address-cont{
+    display: block;
+    width: 98%;
+  }
+
+  .form_option_shipping, 
+  .choose-saved-address, 
+  .choose-saved-shipping-address{
+    width: 100%;
+  }
+
+  .shipping-address-cont.orders{
+    flex-direction: column;
+    width: 98%;
+  }
+
+  .choose-saved-shipping-address-from-order-item{
+    width: 100%;
   }
 }

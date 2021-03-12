@@ -55,8 +55,8 @@ if (!class_exists('OCWMA')) {
     }
 
     function OCWMA_load_script_style() {
-      wp_enqueue_style( 'OCWMA_front_css',OCWMA_PLUGIN_DIR . '/css/style.css', false, '1.0.19' );
-      wp_enqueue_script( 'OCWMA_front_js',OCWMA_PLUGIN_DIR . '/js/front.js', false, '1.0.41' );
+      wp_enqueue_style( 'OCWMA_front_css',OCWMA_PLUGIN_DIR . '/css/style.css', false, '1.0.96' );
+      wp_enqueue_script( 'OCWMA_front_js',OCWMA_PLUGIN_DIR . '/js/front.js', false, '1.1.19' );
       wp_localize_script( 'OCWMA_front_js', 'ajax_url', admin_url('admin-ajax.php') );
       $translation_array_img = OCWMA_PLUGIN_DIR;
       

@@ -403,6 +403,7 @@ if (!class_exists('OCWMA_front')) {
             global $wpdb;
             $tablename=$wpdb->prefix.'ocwma_billingadress';  
           ?>
+          <h4><?php echo __('Select from your Address book')?></h4>
           <div class="shipping-address-cont">
           <div class="form_option_shipping item" data-id="<?php echo $user_id; ?>" ><div class="plus alt" title="<?php echo get_option( 'ocwma_head_title_ship', 'Add Shipping Address' );?>"></div>
           </div>
@@ -413,109 +414,48 @@ if (!class_exists('OCWMA_front')) {
                       $user_data = unserialize($userdata_bil);
 
                       ?> <div class="choose-saved-shipping-address item" const-val-id="<?php echo $row->id ?>" id="saved-shipping-address-<?php echo $row->id ?>" const-data='<?php echo json_encode( unserialize( $userdata_bil)); ?>'>
+                        <div class='edit-shipment-address address-btn' const-val-id='<?php echo $row->id; ?>'>Edit</div>
+                        <div class='remove-shipment-address address-btn' const-val-id='<?php echo $row->id; ?>'>Remove</div>
+                        <div class='clr'></div>
+                        
                       <?php 
 
                       unset($user_data['reference_field']);
 
                       $address_show = '';
+                      $address_show .= "<div class='address-rec'><strong> ".$user_data['shipping_first_name']." ". $user_data['shipping_last_name'] . "</strong></div> ";  
 
+                      $address_show .= "<div class='address-rec'>
+                      <span>
+                      ".$user_data['shipping_region_select'].", ". $user_data['shipping_city'] . ", ". $user_data['shipping_country'] . "<span></div> ";
+                      
+                      $address_show .= "<div class='address-rec'>
+                      <span>
+                      ".$user_data['shipping_address_1'].", ". $user_data['shipping_Building_number'] . ", ". $user_data['shipping_zone'] . "<span></div> ";  
+
+
+                      /*
                         foreach ($user_data as $key => $value) {
                           if(in_array($key, array('shipping_first_name', 'shipping_last_name'))){
                             $address_show .= "<span title='$key'><strong> $value</strong></span> ";  
-                          }else if(in_array($key, array('shipping_Mobile_number'))){
+                          }
+                          if(in_array($key, array('shipping_Mobile_number'))){
                             $address_show .= "</br><span title='$key'>$value</span></br> ";  
                           }else{
                             $address_show .= "<span title='$key'> $value</span> ";  
                           }
                           
                         }
+                        */
 
                         echo $address_show;
 
-                        echo "<div class='remove-shipment-address' const-val-id='$row->id'>Remove</div>";
-
-                       ?>
+                        ?>
                     </div>
                     <?php } ?>
                   </div>
 
-                  <div class="shipping-address-cont orders">
 
-                  <?php 
-
-                  $customer_orders_post = get_posts( array(
-                      'numberposts' => 5,
-                      'meta_key'    => '_customer_user',
-                      'meta_value'  => $user_id,
-                      'post_type'   => wc_get_order_types(),
-                      //'post_status' => array_keys('wc-processing' ),
-                      'post_status' => array_keys( wc_get_order_statuses() ),
-                  ) );
-
-
-                  foreach($customer_orders_post as $order_post){
-
-                      //$userdata_bil=$row->userdata;
-                      //$user_data = unserialize($userdata_bil);
-
-                    $order = wc_get_order( $order_post->ID);
-
-                      ?> <div class="choose-saved-shipping-address-from-order-item" id="saved-shipping-address-<?php echo $order_post->ID ?>" const-data='<?php echo json_encode( $order->get_address("shipping")); ?>' const-data-bill='<?php echo json_encode( $order->get_address("billing")); ?>' >
-                      <?php 
-                      
-                      
-                      if($order->get_address('shipping')["city"] == '' 
-                    ){
-                        $city = $order->get_address('billing')["city"];
-
-                      } else{
-                        $city =  $order->get_address('shipping')["city"];
-                      }   
-
-                      if(
-                        $order->get_address('shipping')["address_1"] ==''
-                    ){
-                        $street =  $order->get_address('billing')["Street"];
-                        //print_r($order->get_address('billing'));
-
-                      } else{
-                        $street =  $order->get_address('shipping')["address_1"];
-                      }
-                      //echo $order->ID . '<br>';
-                      echo "<span> <strong>" .
-                      $order->get_address('shipping')['first_name'] . " " .
-                      $order->get_address('shipping')['last_name'] .
-                      "</strong></span> <br>";
-                      echo "<span cont-type='city' cont-val='$city'>". $order->get_address('shipping')["shipping_zone"]. "</span> <br>";
-                      echo "<span cont-type='city' cont-val='$city'>$city</span> <br>";
-                      echo "<span cont-type='street' cont-val='$street'>$street</span> / ";
-                      echo "<span cont-type='street' cont-val='$street'> " .
-                      $order->get_address('shipping')['Building_number'] .
-                      "</span>";
-
-
-
-
-                      //echo $order->shipping_address_1 . '<br>';
-
-/*
-echo $order->get_shipping_address_1();
-echo $order->get_shipping_Building_number();
-echo $order->get_shipping_Mobile_number();
-*/
-
-                      
-
-                        
-
-
-                       ?>
-                    </div>
-                    <?php } ?>
-
-                  
-
-                    </div>
                     <?php
           }
 
@@ -741,12 +681,6 @@ echo $order->get_shipping_Mobile_number();
             $billing_data = array();
             $field_errors = array();
 
-            $billing_data['reference_field'] = sanitize_text_field($_REQUEST['reference_field']);
-
-            if($_REQUEST['reference_field'] == '') {
-              $field_errors['oc_refname'] = '1';
-            }
-
             foreach ($address_fields as $key => $field) {
               $billing_data[$key] = sanitize_text_field($_REQUEST[$key]);
 
@@ -764,8 +698,7 @@ echo $order->get_shipping_Mobile_number();
 
               $condition=array(
                   'id'=>$edit_id,
-                  'userid' =>$ocwma_userid,
-                  'type' =>sanitize_text_field($_REQUEST['type'])
+                  'userid' =>$ocwma_userid
                 );
               $wpdb->update($tablename,array( 
               'userdata' =>$billing_data_serlized),$condition);

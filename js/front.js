@@ -284,17 +284,39 @@ jQuery(document).ready(function(){
 			}
 		});
 	});
+	/*
+	jQuery('body').on('click','#shipment-save-addresses-form :submit',function(e) {
+		e.preventDefault();
+		console.log('account connection ))');
+		console.log(jQuery('form').serialize());
+	});
+*/
+	jQuery('body').on('click','.woocommerce-shipping-fields .form_option_shipping, #shipment-save-addresses-form :submit',function(e) {
+		e.preventDefault();
+
+		var currentRecirdID = jQuery(this).attr('const-val-id');
+		var data = JSON.stringify(jQuery('form').serializeArray());
+
+		 var data = jQuery("form").serialize().split("&");
+
+		    var dataObj={};
+		    for(var key in data)
+		    {
+		        dataObj[data[key].split("=")[0]] = data[key].split("=")[1];
+		    }
 
 
-	jQuery('body').on('click','.form_option_shipping',function() {
+		//var data = JSON.parse(JSON.stringify(jQuery('form').serializeArray()));
+		dataObj['action'] = currentRecirdID == undefined ? 'ocwma_validate_shipping_form_fields' : 'ocwma_validate_edit_shipping_form_fields';
+		//dataObj['action'] = 'testAjaxus';
 		
-		console.log(jQuery('.checkout.woocommerce-checkout.processing').serialize());
+		console.log(dataObj['action']);
+		console.log(dataObj);
 
 		jQuery.ajax({
 			url:ajax_url,
 			type:'POST',
-			data: jQuery('.checkout.woocommerce-checkout.processing').serialize() + "&action=ocwma_validate_shipping_form_fields",
-			dataType: 'JSON',
+			data: dataObj,
 			success : function(response) {
 
 				console.log(response);
@@ -312,6 +334,7 @@ jQuery(document).ready(function(){
 				alert('Error occured');
 			}
 		});
+
 
 		
 	});
@@ -374,18 +397,20 @@ jQuery(document).ready(function(){
 		});
 	});
 
-	// set billing address
-	jQuery('body').on('click','#timeline-shipping',function() {
-		var billing_address =  jQuery('#billing_email').val();
-		jQuery('#shipping_email').val(billing_address);
+
+
+	// remove shipment address
+	jQuery('body').on('click','.edit-shipment-address',function(e) {
+		e.preventDefault();
+		var address_id =  jQuery(this).attr('const-val-id');
+		window.location.href = '/my-account/edit-address/shipping?addressid=' + address_id
 
 	});
 
 	// remove shipment address
 	jQuery('body').on('click','.remove-shipment-address',function(e) {
 		e.preventDefault();
-		var address_id =  jQuery(this).attr('const-val-id');	;
-		console.log('remove address');
+		var address_id =  jQuery(this).attr('const-val-id');
 		
 		jQuery.ajax({
 			url:ajax_url,
@@ -407,6 +432,24 @@ jQuery(document).ready(function(){
 	});
 
 
+	jQuery(document).ready(function() {
+
+		var checked = jQuery("#order_request_blank_card").is(':checked');
+            if (checked) {
+                jQuery("#order_message_on_card_box_field").hide();
+            } else {
+                jQuery("#order_message_on_card_box_field").show();
+            }
+
+        jQuery("#order_request_blank_card").click(function() {
+            var checked = jQuery(this).is(':checked');
+            if (checked) {
+                jQuery("#order_message_on_card_box_field").hide();
+            } else {
+                jQuery("#order_message_on_card_box_field").show();
+            }
+        });
+    });
 
 
 });
